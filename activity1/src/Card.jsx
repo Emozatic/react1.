@@ -4,12 +4,12 @@ import CardBio from "./CardBio";
 import CardBtn from "./CardBtn";
 import "./Card.css";
 
-export default function Card(){
-    return(
+export default function Card({ name, bio }) {
+    return (
         <div className="card">
-        <CardName />
-        <CardImage />
-        <CardBio />
+            <CardName name={name} />
+            <CardImage />
+            <CardBio bio={bio} />
         <CardBtn />
         </div>
     )

@@ -1,5 +1,5 @@
-export default function CardBIo(){
-    return(
-        <p>This is my Intro</p>
+export default function CardBio({ bio }) {
+    return (
+        <p>{bio}</p>
     )
 }

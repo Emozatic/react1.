@@ -1,5 +1,5 @@
-export default function CardName(){
-    return(
-        <h1>Lucky</h1>
+export default function CardName({ name }) {
+    return (
+        <h1>{name}</h1>
     )
 }

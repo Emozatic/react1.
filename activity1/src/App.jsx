@@ -4,7 +4,9 @@ import Card from "./Card";
 function App(){
   return(
     <div>
-      <Card />
+      <Card name="Lucky" bio="I am a student"/>
+      <Card name="Emo" bio="I am a doctor"/>
+      <Card name="Rocky" bio="I am a Scientist"/>
     </div>
   )
 }

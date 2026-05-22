@@ -1,5 +1,6 @@
+import "./CardBtn.css"
 export default function CardBtn(){
     return(
-        <button>Click me</button>
+        <button className="card-btn">Click me</button>
     )
 }

@@ -5,7 +5,7 @@ function App(){
   return(
     <>
     <h1>Hello World!</h1>
-    <ButtonClick />
+    <ButtonClick title="Inc Count"/>
     </>
   )
 }

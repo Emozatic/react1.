@@ -17,10 +17,15 @@ export default function TodoList(){
         console.log(event.target.value);
     }
 
+    //function for deleting a todo
+    let deleteTodo= (id)=>{
+        setTodos(todo.filter((todo) => todo.id !== id));
+    }
+
 
 
     return(
-        <>
+        <div>
         <input type="text" 
         placeholder="Enter a todo..."
         value={input}
@@ -33,12 +38,18 @@ export default function TodoList(){
         <p>
             <ul>
                 {todo.map((todo)=>(
-                    <li key={todo.id}>{todo.task}</li>
+                    <li key={todo.id}><span>{todo.task}</span>
+                    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                    </li>
                 ))}
             </ul>
         </p>
-        </>
+        </div>
+
 
 
     )
 }
+
+
+

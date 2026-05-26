@@ -2,12 +2,12 @@ import {useState} from "react";
 import { v4 as uuidv4 } from "uuid";
  
 export default function TodoList(){
-    let [todo, setTodos]= useState([{task: "sample task", id: uuidv4()}]); //for todo
+    let [todo, setTodos]= useState([{task: "sample task", id: uuidv4(), isMarkedAsTrue:false}]); //for todo
     let [input, setInput]= useState(""); //for input
 
     //for adding new todo
     let addNewTodo=()=>{
-        setTodos([...todo, {task: input, id: uuidv4()}])
+        setTodos([...todo, {task: input, id: uuidv4(), isMarkedAsTrue:false}])
         setInput("");
     }
 
@@ -51,6 +51,18 @@ export default function TodoList(){
     ))
     }
 
+    function markedAsRead(id){
+        setTodos(todo.map((todo)=>{
+            if(todo.id==id){
+                return {...todo, isMarkedAsTrue: true};
+            }
+            else{
+                return todo;
+            }
+        }))
+
+    }
+
     return(
         <div>
         <input type="text" 
@@ -65,9 +77,10 @@ export default function TodoList(){
         <p>
             <ul>
                 {todo.map((todo)=>(
-                    <li key={todo.id}><span>{todo.task}</span>
+                    <li key={todo.id}><span style={todo.isMarkedAsTrue ? { textDecoration: 'line-through' } : {}}>{todo.task}</span>
                     <button onClick={() => deleteTodo(todo.id)}>Delete</button>
                     <button onClick={() => updateOneTodo(todo.id)}>Update</button>
+                    <button onClick={() => markedAsRead(todo.id)}>Marked as Complete</button>
                     </li>
                 ))}
             </ul>

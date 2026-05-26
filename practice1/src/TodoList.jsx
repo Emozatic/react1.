@@ -30,6 +30,26 @@ export default function TodoList(){
     }
 
 
+    //function for setting all todos to lower case
+    let setLowerCase=()=>{
+        setTodos(todo.map((todo)=>{
+            return {...todo, task: todo.task.toLowerCase()};
+        }))
+    }
+    //function for update only one
+
+    function updateOneTodo(id){
+        setTodos(todo.map((todo)=>{
+            if(todo.id==id){
+                return {...todo, task: todo.task.toUpperCase()};
+            }
+            else{
+            return todo;
+        }
+        }
+        
+    ))
+    }
 
     return(
         <div>
@@ -47,11 +67,13 @@ export default function TodoList(){
                 {todo.map((todo)=>(
                     <li key={todo.id}><span>{todo.task}</span>
                     <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                    <button onClick={() => updateOneTodo(todo.id)}>Update</button>
                     </li>
                 ))}
             </ul>
         </p>
         <button onClick={setUpperCase}>Set Upper Case</button>
+        <button onClick={setLowerCase}>Set Lower Case</button>
         </div>
 
 

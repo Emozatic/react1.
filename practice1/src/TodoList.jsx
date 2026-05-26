@@ -22,6 +22,13 @@ export default function TodoList(){
         setTodos(todo.filter((todo) => todo.id !== id));
     }
 
+    //function for setting all todos to upper case
+    let setUpperCase=()=>{
+        setTodos(todo.map((todo)=>{
+            return {...todo, task: todo.task.toUpperCase()};
+        }))
+    }
+
 
 
     return(
@@ -44,6 +51,7 @@ export default function TodoList(){
                 ))}
             </ul>
         </p>
+        <button onClick={setUpperCase}>Set Upper Case</button>
         </div>
 
 

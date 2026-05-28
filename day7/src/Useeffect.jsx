@@ -14,7 +14,7 @@ export default function UseEffect() {
 
     useEffect(function(){
         console.log("useEffect")
-    },[countx])
+    },[])
 
     return(
         <>

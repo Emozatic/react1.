@@ -31,6 +31,19 @@ export default function Todo(){
         });
     };
 
+    //updating for single element
+
+    let updateSingleTodo=(id)=>{
+        setTodo((prevTodo)=>{
+            return prevTodo.map((todo)=>{
+                if(todo.id === id){
+                    return {...todo, task: todo.task.toUpperCase()};
+                }
+                return todo;
+            });
+        });
+    };
+
     return(
         <div>
             <input type="text" 
@@ -52,6 +65,7 @@ export default function Todo(){
                     {todo.task}
                 <br/>
                     <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                    <button onClick={() => updateSingleTodo(todo.id)}>Update</button>
                 </li>
             ))}</ul>
 

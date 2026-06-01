@@ -22,6 +22,15 @@ export default function Todo(){
         })
     }
 
+    //updating for all elements
+    let updateAllTodo=()=>{
+        setTodo((prevTodo)=>{
+            return prevTodo.map((todo)=>{
+                return {...todo, task: todo.task.toUpperCase()};
+            });
+        });
+    };
+
     return(
         <div>
             <input type="text" 
@@ -45,6 +54,8 @@ export default function Todo(){
                     <button onClick={() => deleteTodo(todo.id)}>Delete</button>
                 </li>
             ))}</ul>
+
+            <button onClick={updateAllTodo}>Update all to uppercase</button>
         </div>
     )
 }

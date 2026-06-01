@@ -5,13 +5,23 @@ export default function Todo(){
     let [newTodo, setNewTodo]= useState("");
 
     let addNewTask=()=>{
-        setTodo([...todo,  {task: newTodo, id: uuidv4()}]);
+        setTodo((prevTodo)=>{
+            return [...prevTodo, {task: newTodo, id: uuidv4()}]
+        })
+        setNewTodo("");
     }
 
     let updateTodo=(e)=>{
         setNewTodo(e.target.value);
     }
-    
+
+    //deleting Todo
+    let deleteTodo=(id)=>{
+        setTodo((prevTodo)=>{
+            return prevTodo.filter((todo)=> todo.id !== id);
+        })
+    }
+
     return(
         <div>
             <input type="text" 
@@ -29,7 +39,11 @@ export default function Todo(){
             </h3>
 
             <ul>{todo.map((todo)=>(
-                <li key={todo.id}>{todo.task}</li>
+                <li key={todo.id}>
+                    {todo.task}
+                <br/>
+                    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                </li>
             ))}</ul>
         </div>
     )

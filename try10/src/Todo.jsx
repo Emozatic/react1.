@@ -1,12 +1,12 @@
 import {useState} from "react";
 import { v4 as uuidv4 } from "uuid";
 export default function Todo(){
-    let [todo, setTodo]= useState([{task:"sample todo", id: uuidv4()}]);
+    let [todo, setTodo]= useState([{task:"sample todo", id: uuidv4(), isDone: false}]);
     let [newTodo, setNewTodo]= useState("");
 
     let addNewTask=()=>{
         setTodo((prevTodo)=>{
-            return [...prevTodo, {task: newTodo, id: uuidv4()}]
+            return [...prevTodo, {task: newTodo, id: uuidv4(), isDone: false}]
         })
         setNewTodo("");
     }
@@ -44,6 +44,18 @@ export default function Todo(){
         });
     };
 
+    //isdone
+    let isDone=(id)=>{
+        setTodo((prevTodo)=>{
+            return prevTodo.map((todo)=>{
+                if(todo.id === id){
+                    return {...todo, isDone: true};
+                }
+                return todo;
+            })
+        })
+    }
+
     return(
         <div>
             <input type="text" 
@@ -62,10 +74,15 @@ export default function Todo(){
 
             <ul>{todo.map((todo)=>(
                 <li key={todo.id}>
-                    {todo.task}
+                    <span style={todo.isDone ? {textDecoration: "line-through"} : {}}>
+                        {todo.task}
+                    </span>
                 <br/>
+                <span>
                     <button onClick={() => deleteTodo(todo.id)}>Delete</button>
                     <button onClick={() => updateSingleTodo(todo.id)}>Update</button>
+                    <button onClick={()=> isDone(todo.id)}>mark as done</button>
+                    </span>
                 </li>
             ))}</ul>
 
